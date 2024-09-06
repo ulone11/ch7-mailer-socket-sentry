@@ -9,9 +9,10 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import ModalOtp from "./ModalOtp";
+import { Link as RouterLink } from 'react-router-dom'; // Pastikan import ini ada
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,6 @@ const LoginForm = () => {
   const [isNeedOtp, setIsNeedOtp] = useState(false);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
-  const navigate = useNavigate(); // Initialize navigate
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const LoginForm = () => {
           });
 
           setTimeout(() => {
-            navigate("/"); // Redirect to the main page (App.jsx)
+            window.location.href = "/dashboard"; // Ganti sesuai rute
           }, 1000);
         }
       })
@@ -118,8 +118,8 @@ const LoginForm = () => {
               Login
             </Button>
             <Button as={RouterLink} to="/forgot-password" variant="link" mt={4}>
-              Forgot Password?
-            </Button>
+            Forgot Password?
+          </Button>
           </form>
         </VStack>
       </Box>
